@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>FIREBASE-FORM</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style2.css">
+    </head>
+    <body>
+        <div class="box">
+            <div class="form">
+                <h2>LOGIN FORM</h2>
+            </br>
+            </br>
+            </br>
+                <form>
+                    <div class="inputbox">
+                        <input type="username" value="" id="username" required>
+                        <span>Username</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="email" value="" id="email" required>
+                        <span>E-mail</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="password" value="" id="password" required>
+                        <span>Password</span>
+                    </div>
+                    <input type="submit" value="SUBMIT" class="sub">
+                </form>
+            </div>
+        </div>
+
+        
+        
+    </body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAN92pm_zgKiqls4sxYrY88Q9YsU3UGIeM",
+          authDomain: "neww-dba3b.firebaseapp.com",
+          databaseURL: "https://neww-dba3b-default-rtdb.firebaseio.com",
+          projectId: "neww-dba3b",
+          storageBucket: "neww-dba3b.appspot.com",
+          messagingSenderId: "1055842859355",
+          appId: "1:1055842859355:web:3dbae218013d9e1b3f827e"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db= getDatabase(app);
+        const auth = getAuth();
+
+        sighUp.addEventlistener('click',(e) => {
+
+            var username = document.getElementById('usrename').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    alert('user created!');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert('errorMessage');
+    // ..
+  });
+
+
+        })
+      </script>
+</html>
